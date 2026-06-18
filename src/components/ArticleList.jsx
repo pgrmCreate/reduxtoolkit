@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addArticle } from "../store/articlesSlices";
+import { addArticle, getArticleFromApi } from "../store/articlesSlices";
+import { Spinner } from "./Spinner";
 
 
 export function ArticleList() {
@@ -13,7 +14,7 @@ export function ArticleList() {
         })
         */
         //equivalent avec les actions créator :  dispatch(addArticle());
-        dispatch(addArticle());
+        dispatch(getArticleFromApi());
         
     }
 
@@ -22,11 +23,17 @@ export function ArticleList() {
 
         <button onClick={handlerAddArticle}>add</button>
         
-
+        {articles.isPending && (
+            <div>
+                <p>haaaaaaaaaaa</p>
+                <Spinner />
+                </div>
+        )}
+        
         <ul>
             { 
-                articles.map((article) => (
-                    <li>{article}</li>
+                articles.articles.map((article, index) => (
+                    <li key={index}>{article}</li>
                 ))
             }
             
