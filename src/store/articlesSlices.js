@@ -8,4 +8,6 @@ export const articleSlice = createSlice({
             state.push('titre de larticle');
         }
     }
-})
+});
+
+export const { addArticle } = articleSlice.actions;
